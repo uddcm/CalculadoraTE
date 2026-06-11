@@ -10,11 +10,11 @@
       --card:#ffffff;
       --text:#1f2937;
       --muted:#6b7280;
-      --blue:#1b5e20;
-      --blue2:#2e7d32;
+      --green:#1b5e20;
+      --green2:#2e7d32;
       --line:#d8dee6;
-      --soft:#eef4fa;
-      --green:#0f766e;
+      --soft:#e8f5e9;
+      --warn:#b45309;
       --red:#b91c1c;
     }
     *{box-sizing:border-box}
@@ -26,7 +26,7 @@
       line-height:1.45;
     }
     header{
-      background:linear-gradient(135deg,var(--blue),var(--blue2));
+      background:linear-gradient(135deg,var(--green),var(--green2));
       color:white;
       padding:26px 18px;
       text-align:center;
@@ -34,7 +34,7 @@
     header h1{margin:0;font-size:1.7rem}
     header p{margin:8px 0 0;font-size:.95rem;opacity:.95}
     main{
-      max-width:1050px;
+      max-width:1120px;
       margin:22px auto;
       padding:0 14px 40px;
     }
@@ -46,6 +46,7 @@
       box-shadow:0 4px 16px rgba(0,0,0,.05);
       margin-bottom:16px;
     }
+    h2{margin-top:0;color:var(--green)}
     details{
       border:1px solid var(--line);
       border-radius:12px;
@@ -57,7 +58,7 @@
       cursor:pointer;
       padding:13px 15px;
       font-weight:700;
-      color:var(--blue);
+      color:var(--green);
       background:var(--soft);
     }
     details .content{padding:14px 16px}
@@ -72,8 +73,8 @@
     }
     .grid{
       display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:14px;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
     }
     .field{
       border:1px solid var(--line);
@@ -117,13 +118,18 @@
       padding:11px 14px;
       font-weight:700;
       cursor:pointer;
-      background:var(--blue);
+      background:var(--green);
       color:white;
     }
     button.secondary{background:#475569}
+    button.light{
+      background:#e8f5e9;
+      color:#1b5e20;
+      border:1px solid #a5d6a7;
+    }
     .results{
       display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
+      grid-template-columns:repeat(5,minmax(0,1fr));
       gap:12px;
       margin-top:16px;
     }
@@ -134,7 +140,7 @@
       border:1px solid var(--line);
     }
     .result span{display:block;color:var(--muted);font-size:.82rem}
-    .result strong{display:block;font-size:1.25rem;margin-top:4px;color:var(--blue)}
+    .result strong{display:block;font-size:1.18rem;margin-top:4px;color:var(--green)}
     table{
       width:100%;
       border-collapse:collapse;
@@ -148,20 +154,37 @@
     }
     th{background:#f1f5f9}
     .note{
-      border-left:5px solid var(--blue);
+      border-left:5px solid var(--green);
       background:#f8fafc;
       padding:12px;
       border-radius:10px;
       margin:10px 0;
     }
     .warn{
+      border-left:5px solid var(--warn);
+      background:#fff7ed;
+      padding:12px;
+      border-radius:10px;
+      margin:10px 0;
+      display:none;
+    }
+    .error{
       border-left:5px solid var(--red);
       background:#fff7f7;
       padding:12px;
       border-radius:10px;
       margin:10px 0;
+      display:none;
     }
-    @media(max-width:800px){
+    .mini{
+      font-size:.9rem;
+      color:var(--muted);
+    }
+    @media(max-width:900px){
+      .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .results{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:620px){
       .grid,.results{grid-template-columns:1fr}
     }
     @media print{
@@ -174,7 +197,7 @@
 <body>
 <header>
   <h1>Calculadora de Tiempo Extraordinario IMSS</h1>
-  <p>Concepto 037 · Cálculo conforme a la mecánica de pago y cláusulas contractuales proporcionadas</p>
+  <p>Concepto 037 · Herramienta de apoyo para verificar el cálculo conforme a la mecánica de pago</p>
 </header>
 
 <main>
@@ -184,10 +207,8 @@
     <details>
       <summary>1. ¿Qué se considera tiempo extraordinario?</summary>
       <div class="content">
-        <p>Conforme a la Cláusula 32, se considera tiempo extraordinario:</p>
-        <p><strong>I.</strong> El que exceda los límites de la jornada diaria contratada.</p>
-        <p><strong>II.</strong> Todo el tiempo laborado en días de descanso semanal y en días no laborables.</p>
-        <div class="note">El tiempo extraordinario debe mediar con orden escrita de la autoridad facultada y debe ofrecerse preferentemente a trabajadores de la misma adscripción, mayor antigüedad y misma categoría.</div>
+        <p>Conforme a la Cláusula 32, se considera tiempo extraordinario el que excede los límites de la jornada diaria contratada, así como el tiempo laborado en días de descanso semanal y en días no laborables.</p>
+        <div class="note">Debe mediar orden escrita de la autoridad facultada y ofrecerse preferentemente a trabajadores de la misma adscripción, mayor antigüedad y misma categoría.</div>
       </div>
     </details>
 
@@ -201,16 +222,15 @@
     <details>
       <summary>3. Forma de pago</summary>
       <div class="content">
-        <p>La Cláusula 33 establece que el tiempo extra que exceda la jornada ordinaria se pagará siempre en efectivo y por ningún motivo con tiempo.</p>
-        <p>Cuando el tiempo extra sea menor de 30 minutos, se computa como media hora; si excede de 30 minutos o es menor de 60 minutos, se computa como una hora.</p>
-        <p>La Cláusula 35 señala que el pago debe realizarse en la nómina única de la segunda quincena de aquella en la que el trabajador prestó sus servicios.</p>
+        <p>El tiempo extra que exceda la jornada ordinaria se paga siempre en efectivo y por ningún motivo con tiempo.</p>
+        <p>Cuando sea menor de 30 minutos, se computa como media hora; cuando exceda de 30 minutos o sea menor de 60 minutos, se computa como una hora.</p>
+        <p>El pago debe realizarse en la nómina única de la segunda quincena de aquella en la que el trabajador prestó sus servicios.</p>
       </div>
     </details>
 
     <details>
       <summary>4. Mecánica del concepto 037</summary>
       <div class="content">
-        <p>La mecánica de pago del concepto 037 indica:</p>
         <div class="formula">
 Sueldo + conceptos 011 a 016, 020, 022, 023, 050, 054, 057, 058, 061, 063, 001 y 002
 ÷ 15
@@ -223,118 +243,63 @@ Sueldo + conceptos 011 a 016, 020, 022, 023, 050, 054, 057, 058, 061, 063, 001 y
     </details>
 
     <details>
-      <summary>5. Conceptos que debes capturar</summary>
+      <summary>5. ¿Qué capturo del tarjetón?</summary>
       <div class="content">
         <p>Captura únicamente los conceptos que aparezcan en el tarjetón y que estén incluidos en la mecánica del concepto 037.</p>
-        <table>
-          <thead><tr><th>Concepto</th><th>Descripción</th><th>Ejemplo del tarjetón</th></tr></thead>
-          <tbody>
-            <tr><td>001 / 002 / 003</td><td>Sueldo confianza / sueldo base / sueldo temporal</td><td>002 Sueldo Base Fijo</td></tr>
-            <tr><td>011</td><td>Ayuda de renta cláusula 63 Bis inciso b</td><td>011</td></tr>
-            <tr><td>012</td><td>Jornada discontinua</td><td>Si aparece</td></tr>
-            <tr><td>013</td><td>Sobresueldo médicos</td><td>Si aparece</td></tr>
-            <tr><td>014</td><td>Infectocontagiosidad no médica</td><td>Si aparece</td></tr>
-            <tr><td>015</td><td>Zona aislada</td><td>Si aparece</td></tr>
-            <tr><td>016</td><td>Alto costo de vida</td><td>Si aparece</td></tr>
-            <tr><td>020</td><td>Ayuda de renta cláusula 63 Bis inciso a</td><td>020</td></tr>
-            <tr><td>022</td><td>Ayuda de renta cláusula 63 Bis inciso c</td><td>022</td></tr>
-            <tr><td>023</td><td>Infectocontagiosidad médica</td><td>Si aparece</td></tr>
-            <tr><td>050</td><td>Ayuda para despensa</td><td>050</td></tr>
-            <tr><td>054</td><td>Emanaciones radiactivas no médicas</td><td>054</td></tr>
-            <tr><td>057</td><td>Atención integral continua</td><td>Si aparece</td></tr>
-            <tr><td>058</td><td>Sobresueldo docencia enfermería</td><td>Si aparece</td></tr>
-            <tr><td>061</td><td>Sobresueldo servicio traslado de pacientes</td><td>Si aparece</td></tr>
-            <tr><td>063</td><td>Emanaciones radiactivas</td><td>Si aparece</td></tr>
-          </tbody>
-        </table>
-        <div class="warn">No captures conceptos que no estén en la mecánica del 037, por ejemplo: 029 prima vacacional, 032 asistencia, 033 puntualidad, 027 pasajes o 072 libros.</div>
+        <div class="note">No captures conceptos que no estén en la mecánica del 037, por ejemplo: 027 pasajes, 029 prima vacacional, 032 asistencia, 033 puntualidad o 072 libros.</div>
       </div>
     </details>
   </section>
 
   <section class="card">
     <h2>Calculadora</h2>
+    <p class="mini">Todos los campos inician en cero. Captura únicamente los conceptos que aparezcan en el tarjetón del trabajador.</p>
+
     <div class="grid">
-      <div class="field">
-        <span class="tag">Tarjetón · Sueldo</span>
-        <label for="c002">001 / 002 / 003 Sueldo</label>
-        <input id="c002" type="number" step="0.01" value="3937.64">
-        <small>Coloca el importe del sueldo que aparezca en percepciones.</small>
-      </div>
+      <div class="field"><span class="tag">Sueldo</span><label for="c001">001 Sueldo confianza</label><input id="c001" type="number" step="0.01" value="0"><small>Solo si aparece.</small></div>
+      <div class="field"><span class="tag">Sueldo</span><label for="c002">002 Sueldo base</label><input id="c002" type="number" step="0.01" value="0"><small>Importe del sueldo base.</small></div>
+      <div class="field"><span class="tag">Sueldo</span><label for="c003">003 Sueldo temporal</label><input id="c003" type="number" step="0.01" value="0"><small>Solo si aplica.</small></div>
 
-      <div class="field">
-        <span class="tag">Tarjetón · 011</span>
-        <label for="c011">011 Ayuda renta inciso b</label>
-        <input id="c011" type="number" step="0.01" value="3234.77">
-        <small>Captura el importe del concepto 011 si aparece.</small>
-      </div>
+      <div class="field"><span class="tag">Concepto 011</span><label for="c011">011 Ayuda renta inciso b</label><input id="c011" type="number" step="0.01" value="0"><small>Importe del concepto 011.</small></div>
+      <div class="field"><span class="tag">Concepto 012</span><label for="c012">012 Jornada discontinua</label><input id="c012" type="number" step="0.01" value="0"><small>Solo si aparece.</small></div>
+      <div class="field"><span class="tag">Concepto 013</span><label for="c013">013 Sobresueldo médicos</label><input id="c013" type="number" step="0.01" value="0"><small>Solo si aparece.</small></div>
 
-      <div class="field">
-        <span class="tag">Tarjetón · 012-016</span>
-        <label for="c012016">012 a 016</label>
-        <input id="c012016" type="number" step="0.01" value="0">
-        <small>Suma aquí 012, 013, 014, 015 y 016 si aparecen.</small>
-      </div>
+      <div class="field"><span class="tag">Concepto 014</span><label for="c014">014 Infectocontagiosidad no médica</label><input id="c014" type="number" step="0.01" value="0"><small>Solo si aparece.</small></div>
+      <div class="field"><span class="tag">Concepto 015</span><label for="c015">015 Zona aislada</label><input id="c015" type="number" step="0.01" value="0"><small>Solo si aparece.</small></div>
+      <div class="field"><span class="tag">Concepto 016</span><label for="c016">016 Alto costo de vida</label><input id="c016" type="number" step="0.01" value="0"><small>Solo si aparece.</small></div>
 
-      <div class="field">
-        <span class="tag">Tarjetón · 020</span>
-        <label for="c020">020 Ayuda renta inciso a</label>
-        <input id="c020" type="number" step="0.01" value="250.00">
-        <small>Captura el importe del concepto 020.</small>
-      </div>
+      <div class="field"><span class="tag">Concepto 020</span><label for="c020">020 Ayuda renta inciso a</label><input id="c020" type="number" step="0.01" value="0"><small>Importe del concepto 020.</small></div>
+      <div class="field"><span class="tag">Concepto 022</span><label for="c022">022 Ayuda renta inciso c</label><input id="c022" type="number" step="0.01" value="0"><small>Importe del concepto 022.</small></div>
+      <div class="field"><span class="tag">Concepto 023</span><label for="c023">023 Infectocontagiosidad médica</label><input id="c023" type="number" step="0.01" value="0"><small>Solo si aparece.</small></div>
 
-      <div class="field">
-        <span class="tag">Tarjetón · 022</span>
-        <label for="c022">022 Ayuda renta inciso c</label>
-        <input id="c022" type="number" step="0.01" value="3227.58">
-        <small>Captura el importe del concepto 022.</small>
-      </div>
+      <div class="field"><span class="tag">Concepto 050</span><label for="c050">050 Ayuda para despensa</label><input id="c050" type="number" step="0.01" value="0"><small>Importe del concepto 050.</small></div>
+      <div class="field"><span class="tag">Concepto 054</span><label for="c054">054 Emanaciones radiactivas no médicas</label><input id="c054" type="number" step="0.01" value="0"><small>Solo si aparece.</small></div>
+      <div class="field"><span class="tag">Concepto 057</span><label for="c057">057 Atención integral continua</label><input id="c057" type="number" step="0.01" value="0"><small>Solo si aparece.</small></div>
 
-      <div class="field">
-        <span class="tag">Tarjetón · 023</span>
-        <label for="c023">023 Infectocontagiosidad médica</label>
-        <input id="c023" type="number" step="0.01" value="0">
-        <small>Solo si aparece en el tarjetón.</small>
-      </div>
-
-      <div class="field">
-        <span class="tag">Tarjetón · 050</span>
-        <label for="c050">050 Ayuda para despensa</label>
-        <input id="c050" type="number" step="0.01" value="200.00">
-        <small>Captura el importe del concepto 050.</small>
-      </div>
-
-      <div class="field">
-        <span class="tag">Tarjetón · 054</span>
-        <label for="c054">054 Emanaciones radiactivas no médicas</label>
-        <input id="c054" type="number" step="0.01" value="1434.48">
-        <small>Captura el importe del concepto 054 si aparece.</small>
-      </div>
-
-      <div class="field">
-        <span class="tag">Tarjetón · Otros integrables</span>
-        <label for="otros">057, 058, 061 y 063</label>
-        <input id="otros" type="number" step="0.01" value="0">
-        <small>Suma aquí estos conceptos solo si aparecen.</small>
-      </div>
+      <div class="field"><span class="tag">Concepto 058</span><label for="c058">058 Sobresueldo docencia enfermería</label><input id="c058" type="number" step="0.01" value="0"><small>Solo si aparece.</small></div>
+      <div class="field"><span class="tag">Concepto 061</span><label for="c061">061 Sobresueldo traslado de pacientes</label><input id="c061" type="number" step="0.01" value="0"><small>Solo si aparece.</small></div>
+      <div class="field"><span class="tag">Concepto 063</span><label for="c063">063 Emanaciones radiactivas</label><input id="c063" type="number" step="0.01" value="0"><small>Solo si aparece.</small></div>
 
       <div class="field">
         <span class="tag">Jornada</span>
         <label for="jornada">Jornada diaria reportada</label>
-        <input id="jornada" type="number" step="0.1" value="6.5">
-        <small>Ejemplo: Técnico Radiólogo 80 puede capturarse como 6.5 horas si esa es su jornada reportada.</small>
+        <select id="jornada">
+          <option value="6.5">6.5 horas</option>
+          <option value="8">8 horas</option>
+        </select>
+        <small>Selecciona únicamente 6.5 u 8 horas.</small>
       </div>
 
       <div class="field">
         <span class="tag">Horas TE</span>
         <label for="horas">Horas y décimas reportadas</label>
-        <input id="horas" type="number" step="0.1" value="20">
-        <small>Máximo normativo: 20.0 horas quincenales, salvo casos especiales señalados en la mecánica.</small>
+        <input id="horas" type="number" step="0.1" value="0">
+        <small>Ejemplo: 1, 1.5, 8, 20. Máximo ordinario: 20.0 horas quincenales.</small>
       </div>
 
       <div class="field">
-        <span class="tag">Tipo de cálculo</span>
-        <label for="tipo">Tipo</label>
+        <span class="tag">Tipo</span>
+        <label for="tipo">Tipo de cálculo</label>
         <select id="tipo">
           <option value="2">Tiempo extra ordinario ×2</option>
           <option value="3">Descanso semanal / obligatorio ×3</option>
@@ -346,60 +311,97 @@ Sueldo + conceptos 011 a 016, 020, 022, 023, 050, 054, 057, 058, 061, 063, 001 y
 
     <div class="actions">
       <button onclick="calcular()">Calcular</button>
+      <button class="light" onclick="cargarEjemploEric()">Cargar ejemplo Eric</button>
       <button class="secondary" onclick="limpiar()">Limpiar</button>
       <button class="secondary" onclick="window.print()">Imprimir / Guardar PDF</button>
     </div>
+
+    <div id="avisoHoras" class="warn"></div>
+    <div id="error" class="error"></div>
 
     <div class="results">
       <div class="result"><span>Total base TE</span><strong id="base">$0.00</strong></div>
       <div class="result"><span>Salario diario TE</span><strong id="diario">$0.00</strong></div>
       <div class="result"><span>Valor hora ordinaria</span><strong id="hora">$0.00</strong></div>
+      <div class="result"><span>Hora doble / triple / cuádruple</span><strong id="horasFactor">$0.00</strong></div>
       <div class="result"><span>Total a pagar</span><strong id="total">$0.00</strong></div>
     </div>
 
-    <div class="note" id="detalle"></div>
+    <div class="note" id="detalle">Captura los importes del tarjetón para iniciar el cálculo.</div>
   </section>
 </main>
 
 <script>
-  const ids = ["c002","c011","c012016","c020","c022","c023","c050","c054","otros","jornada","horas"];
+  const ids = ["c001","c002","c003","c011","c012","c013","c014","c015","c016","c020","c022","c023","c050","c054","c057","c058","c061","c063","horas"];
+  const conceptIds = ["c001","c002","c003","c011","c012","c013","c014","c015","c016","c020","c022","c023","c050","c054","c057","c058","c061","c063"];
+
   function n(id){ return parseFloat(document.getElementById(id).value) || 0; }
   function money(x){ return x.toLocaleString("es-MX",{style:"currency",currency:"MXN"}); }
 
   function calcular(){
-    const base = n("c002")+n("c011")+n("c012016")+n("c020")+n("c022")+n("c023")+n("c050")+n("c054")+n("otros");
-    const jornada = n("jornada");
+    const error = document.getElementById("error");
+    const aviso = document.getElementById("avisoHoras");
+    error.style.display = "none";
+    aviso.style.display = "none";
+
+    const base = conceptIds.reduce((sum,id)=>sum+n(id),0);
+    const jornada = parseFloat(document.getElementById("jornada").value);
     const horas = n("horas");
     const factor = parseFloat(document.getElementById("tipo").value);
 
     if(jornada <= 0){
-      document.getElementById("detalle").innerHTML = "<strong>Error:</strong> La jornada diaria reportada debe ser mayor a cero.";
+      error.innerHTML = "<strong>Error:</strong> La jornada diaria reportada debe ser mayor a cero.";
+      error.style.display = "block";
       return;
+    }
+
+    if(horas > 20){
+      aviso.innerHTML = "<strong>Advertencia:</strong> La mecánica del concepto 037 señala unidades máximas de reporte de 20.0 horas quincenales para todos los tipos de contratación.";
+      aviso.style.display = "block";
     }
 
     const diario = base / 15;
     const hora = diario / jornada;
-    const total = hora * factor * horas;
+    const valorFactor = hora * factor;
+    const total = valorFactor * horas;
 
     document.getElementById("base").textContent = money(base);
     document.getElementById("diario").textContent = money(diario);
     document.getElementById("hora").textContent = money(hora);
+    document.getElementById("horasFactor").textContent = money(valorFactor);
     document.getElementById("total").textContent = money(total);
 
     document.getElementById("detalle").innerHTML =
       "<strong>Desglose:</strong><br>" +
-      money(base) + " ÷ 15 = " + money(diario) + "<br>" +
-      money(diario) + " ÷ " + jornada + " horas = " + money(hora) + "<br>" +
-      money(hora) + " × " + factor + " × " + horas + " horas = <strong>" + money(total) + "</strong>";
+      "Base TE: " + money(base) + "<br>" +
+      money(base) + " ÷ 15 = " + money(diario) + " salario diario TE<br>" +
+      money(diario) + " ÷ " + jornada + " horas = " + money(hora) + " valor hora ordinaria<br>" +
+      money(hora) + " × " + factor + " = " + money(valorFactor) + " valor hora según tipo seleccionado<br>" +
+      money(valorFactor) + " × " + horas + " horas = <strong>" + money(total) + "</strong>";
   }
 
   function limpiar(){
     ids.forEach(id => document.getElementById(id).value = 0);
+    document.getElementById("jornada").value = "6.5";
     document.getElementById("tipo").value = "2";
     calcular();
   }
 
-  ids.concat(["tipo"]).forEach(id => document.getElementById(id).addEventListener("input", calcular));
+  function cargarEjemploEric(){
+    limpiar();
+    document.getElementById("c002").value = 3937.64;
+    document.getElementById("c011").value = 3234.77;
+    document.getElementById("c020").value = 250.00;
+    document.getElementById("c022").value = 3227.58;
+    document.getElementById("c050").value = 200.00;
+    document.getElementById("c054").value = 1434.48;
+    document.getElementById("jornada").value = "6.5";
+    document.getElementById("horas").value = 20;
+    document.getElementById("tipo").value = "2";
+    calcular();
+  }
+
+  ids.concat(["jornada","tipo"]).forEach(id => document.getElementById(id).addEventListener("input", calcular));
   calcular();
 </script>
 </body>
